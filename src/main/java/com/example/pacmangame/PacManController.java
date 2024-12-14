@@ -186,7 +186,7 @@ public class PacManController {
             currentMaze.consume(row, col);
             score += 50;
             boostEndTime = System.nanoTime() + 8_000_000_000L; // 8 seconds boost
-            pacman.activatePowerUp(System.currentTimeMillis() + 8000);
+            pacman.activatePowerUp();
             // Make all ghosts "blind"
             for (Ghost ghost : ghosts) {
                 ghost.setBlind(true);
@@ -195,11 +195,10 @@ public class PacManController {
 
         //deactivate powerUp after 8 secs
         if (System.nanoTime() > boostEndTime && pacman.isPoweredUp()) {
-            pacman.deactivatePowerUp(); // Deactivate boost
-            // Reset ghosts to normal state
             for (Ghost ghost : ghosts) {
                 ghost.setBlind(false);
             }
+            pacman.deactivatePowerUp(); // Deactivate boost
         }
 
         // Check for collision with ghosts

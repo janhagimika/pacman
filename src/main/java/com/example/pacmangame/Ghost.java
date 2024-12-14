@@ -38,48 +38,52 @@ public class Ghost {
     public void move(Maze maze) {
         double nextX = x + directionX * speed;
         double nextY = y + directionY * speed;
-
-        // Check if the ghost is at an intersection
+        snapToGridWithTolerance(maze);
         if (isAtIntersection(maze)) {
-            snapToGridWithTolerance(maze);
-            changeDirection(maze);
+            System.out.println("is at intersection");
+             // Align the ghost to the grid
+            changeDirection(maze);        // Choose a new direction
+            // Move the ghost slightly to ensure it's no longer at the intersection
+            x += directionX * speed; // Move halfway in the new direction
+            y += directionY * speed;
+            return; // Exit to prevent further processing in the same frame
         }
 
+        // Check if the ghost can continue moving in the current direction
         if (canMove(nextX, nextY, maze)) {
             this.x = nextX;
-            this.y = nextY;
+            this.y = nextY; // Move the ghost normally
         } else {
-            snapToGridWithTolerance(maze); // Align again if blocked
-            changeDirection(maze);
+            // Blocked path: attempt to change direction only if not already at an intersection
+            if (!isAtIntersection(maze)) {
+                changeDirection(maze);
+            }
         }
     }
+
 
     private boolean isAtIntersection(Maze maze) {
         int[][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // Up, down, left, right
         double cellSize = maze.getCellSize();
 
+        // Ensure ghost is perfectly aligned with the grid
         if (!isAlignedWithGrid(x, cellSize) || !isAlignedWithGrid(y, cellSize)) {
             return false;
         }
 
+        // Count the number of valid moves
         int validMoves = 0;
-
         for (int[] dir : directions) {
-            double nextX = x + dir[0] * speed;
-            double nextY = y + dir[1] * speed;
-
-            if (canMove(nextX, nextY, maze)) {
-                System.out.println("Direction [" + dir[0] + ", " + dir[1] + "] is valid.");
+            double testX = x + dir[0] * cellSize; // Use cellSize to test intersections, not speed
+            double testY = y + dir[1] * cellSize;
+            if (canMove(testX, testY, maze)) {
                 validMoves++;
-            }
-            else {
-                System.out.println("Direction [" + dir[0] + ", " + dir[1] + "] is blocked.");
             }
         }
 
-        // An intersection has at least 3 or more valid moves
-        return validMoves >= 3; // Adjust threshold if necessary
+        return validMoves >= 3; // Intersection if 3 or more valid moves
     }
+
 
 
 
@@ -106,20 +110,11 @@ public class Ghost {
                 maze.isWall(topRightRow, topRightCol) ||
                 maze.isWall(bottomLeftRow, bottomLeftCol) ||
                 maze.isWall(bottomRightRow, bottomRightCol);
-
-        // Debug print for precise analysis
-        /*System.out.printf("Checking move to (%.2f, %.2f): withinBounds=%b, TLWall=%b, TRWall=%b, BLWall=%b, BRWall=%b%n",
-                nextX, nextY, withinBounds,
-                maze.isWall(topLeftRow, topLeftCol),
-                maze.isWall(topRightRow, topRightCol),
-                maze.isWall(bottomLeftRow, bottomLeftCol),
-                maze.isWall(bottomRightRow, bottomRightCol));*/
-
         return withinBounds && !isWall;
     }
 
 
-    private static final double EPSILON = 1e-3;
+    private static final double EPSILON = 1e-1;
 
     private boolean isAlignedWithGrid(double value, double cellSize) {
         return Math.abs(value % cellSize) < EPSILON;
@@ -130,62 +125,60 @@ public class Ghost {
         double cellSize = maze.getCellSize();
 
         // Snap horizontal position (x) if moving vertically
-        if (directionY != 0) {
+        if (directionY != 0 && !isAlignedWithGrid(x, cellSize)) {
             x = Math.round(x / cellSize) * cellSize;
         }
 
         // Snap vertical position (y) if moving horizontally
-        if (directionX != 0) {
+        if (directionX != 0 && !isAlignedWithGrid(y, cellSize)) {
             y = Math.round(y / cellSize) * cellSize;
         }
-
-        // Ensure both alignments when standing still or changing direction
-        if (directionX == 0 && directionY == 0) {
-            x = Math.round(x / cellSize) * cellSize;
-            y = Math.round(y / cellSize) * cellSize;
-        }
-
-        // Debugging output to confirm snapping
-        System.out.printf("Snapped to grid: (%.2f, %.2f)%n", x, y);
     }
 
+
+
     private void changeDirection(Maze maze) {
-        // Define directions and initialize weights
         int[][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // Up, down, left, right
+        List<int[]> validDirections = new ArrayList<>();
         List<int[]> weightedDirections = new ArrayList<>();
 
-        // Current direction has lower weight
+        // Collect valid directions
         for (int[] dir : directions) {
-            if (dir[0] == directionX && dir[1] == directionY) {
-                // Add current direction 1 time
+            double testX = x + dir[0] * maze.getCellSize(); // Test full cell steps
+            double testY = y + dir[1] * maze.getCellSize();
+            if (canMove(testX, testY, maze)) {
+                validDirections.add(dir);
+            }
+        }
+
+        // Add weighted probability for valid directions
+        for (int[] dir : validDirections) {
+            if (dir[0] == -directionX && dir[1] == -directionY) {
+                // Add the reverse direction once (low probability)
                 weightedDirections.add(dir);
             } else {
-                // Add other directions multiple times for higher weight
+                // Add other directions three times (higher probability)
                 for (int i = 0; i < 3; i++) {
                     weightedDirections.add(dir);
                 }
             }
         }
 
-        // Shuffle weighted directions
-        Collections.shuffle(weightedDirections);
-
-        // Try to move in a valid direction
-        for (int[] dir : weightedDirections) {
-            double nextX = x + dir[0] * speed;
-            double nextY = y + dir[1] * speed;
-
-            if (canMove(nextX, nextY, maze)) {
-                directionX = dir[0];
-                directionY = dir[1];
-                return;
-            }
+        // Choose a random direction based on the weighted list
+        if (!weightedDirections.isEmpty()) {
+            int[] chosenDirection = weightedDirections.get((int) (Math.random() * weightedDirections.size()));
+            directionX = chosenDirection[0];
+            directionY = chosenDirection[1];
+        } else {
+            // No valid moves; stop the ghost
+            directionX = 0;
+            directionY = 0;
         }
-
-        // Fallback in case no valid move is found
-        directionX = 0;
-        directionY = 0;
     }
+
+
+
+
 
 
 
@@ -193,7 +186,6 @@ public class Ghost {
         int[][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
         List<int[]> list = new ArrayList<>(List.of(directions));
         Collections.shuffle(list); // Randomize directions
-        System.out.println("Initializing ghost at (" + x + ", " + y + ")");
 
         for (int[] dir : directions) {
             double nextX = x + dir[0] * speed;
@@ -203,15 +195,15 @@ public class Ghost {
             if (canMove(nextX, nextY, maze)) {
                 directionX = dir[0];
                 directionY = dir[1];
-                System.out.println("Initial direction set to: (" + directionX + ", " + directionY + ")");
-
                 return;
             }
         }
 
-        // Fallback if no direction is valid (shouldn't happen)
+        // Fallback if no direction is valid (shouldn't happen)..set the wrong one to be changed in changeDirection
         directionX = 0;
         directionY = 0;
+        snapToGridWithTolerance(maze);
+        changeDirection(maze);
     }
 
 

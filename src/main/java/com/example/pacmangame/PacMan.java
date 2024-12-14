@@ -64,16 +64,12 @@ public class PacMan {
         resetDirection(); // Reset movement direction as well
     }
 
-    public void activatePowerUp(long powerUpEndTime) {
+    public void activatePowerUp() {
         this.poweredUp = true;
-        this.powerUpEndTime = powerUpEndTime;
     }
 
 
     public boolean isPoweredUp() {
-        if (poweredUp && System.currentTimeMillis() > powerUpEndTime) {
-            poweredUp = false;
-        }
         return poweredUp;
     }
 
