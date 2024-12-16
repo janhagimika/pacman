@@ -8,7 +8,7 @@ public class PacMan {
     private double x;
     private double y;
     private final double size;
-    private double speed;
+    private final double speed;
     private double directionX = 0;
     private double directionY = 0;
 
@@ -18,7 +18,6 @@ public class PacMan {
     private double queuedDirectionY = 0;
 
     private boolean poweredUp = false;
-    private long powerUpEndTime = 0;
 
     public void queueDirection(double dx, double dy) {
         queuedDirectionX = dx;
@@ -58,6 +57,10 @@ public class PacMan {
         directionX = 0;
         directionY = 0;
     }
+    public javafx.geometry.Rectangle2D getBounds() {
+        return new javafx.geometry.Rectangle2D(x, y, size, size);
+    }
+
     public void resetPosition(double startX, double startY) {
         this.x = startX;
         this.y = startY;

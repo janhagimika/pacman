@@ -27,62 +27,39 @@ public class PacManController {
 
         levels.add(new Maze(new int[][] {
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1},
+                {1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 1, 2, 2, 1},
+                {1, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 1, 3, 2, 3, 3, 3, 1, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1},
+                {1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1},
+                {1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1},
+                {1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1},
+                {1, 2, 1, 3, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 3, 3, 2, 1, 2, 2, 2, 2, 2, 2, 2, 3, 2, 1, 1, 1},
+                {1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1},
+                {1, 2, 2, 2, 2, 2, 2, 1, 3, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 3, 2, 2, 2, 2, 2, 2, 1},
+                {1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 1, 1, 1, 3, 2, 1},
+                {1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1},
+                {1, 1, 1, 3, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+        }, 40));
+
+        levels.add(new Maze(new int[][] {
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1},
                 {1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1},
                 {1, 2, 1, 3, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 3, 2, 1, 2, 2, 2, 1},
                 {1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 2, 1, 2, 1, 1, 1},
                 {1, 2, 2, 2, 2, 2, 2, 1, 3, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 1, 3, 2, 2, 2, 2, 2, 2, 1},
                 {1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1},
-                {1, 2, 1, 3, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 3, 2, 1, 1, 1},
-                {1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1},
+                {1, 2, 1, 3, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 1, 1, 1},
+                {1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1},
                 {1, 2, 2, 2, 2, 2, 2, 1, 3, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 1, 3, 2, 2, 2, 2, 2, 2, 1},
-                {1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1},
                 {1, 1, 1, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 1, 1, 1, 3, 2, 1},
                 {1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1},
                 {1, 1, 1, 3, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 1},
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
         }, 40));
-
-
-        levels.add(new Maze(new int[][] {
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1},
-                {1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 1, 2, 2, 1},
-                {1, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 1, 3, 3, 3, 3, 3, 1, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1},
-                {1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1},
-                {1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1},
-                {1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1},
-                {1, 2, 1, 3, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 3, 2, 1, 1, 1},
-                {1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1},
-                {1, 2, 2, 2, 2, 2, 2, 1, 3, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 1, 3, 2, 2, 2, 2, 2, 2, 1},
-                {1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 3, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 1, 1, 1, 3, 2, 1},
-                {1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1},
-                {1, 1, 1, 3, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-        }, 40));
-
-
-        levels.add(new Maze(new int[][] {
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1},
-                {1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 1, 2, 2, 1},
-                {1, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 1, 3, 3, 3, 3, 3, 1, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1},
-                {1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1},
-                {1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1},
-                {1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1},
-                {1, 2, 1, 3, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 3, 2, 1, 1, 1},
-                {1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1},
-                {1, 2, 2, 2, 2, 2, 2, 1, 3, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 1, 3, 2, 2, 2, 2, 2, 2, 1},
-                {1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 3, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 1, 1, 1, 3, 2, 1},
-                {1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1},
-                {1, 1, 1, 3, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-        }, 40));
-
-
-
 
 
         Maze initialMaze = levels.get(currentLevelIndex);
@@ -92,7 +69,7 @@ public class PacManController {
         pacman = new PacMan(initialMaze.getCellSize(), initialMaze.getCellSize(), initialMaze.getCellSize(), 2.5);
 
         ghosts = new ArrayList<>();
-        initializeGhosts(currentLevelIndex + 4); // Start with 4 ghosts
+        initializeGhostsForCurrentLevel(); // Start with 4 ghosts
 
         // Start the game loop
         startGameLoop(gc);
@@ -102,40 +79,64 @@ public class PacManController {
         gameCanvas.setOnKeyPressed(this::handleKeyPress);
     }
 
+    private void initializeGhostsForCurrentLevel() {
+        int baseGhostCount = 4; // Start with 4 ghosts
+        int additionalGhosts = currentLevelIndex; // Add 1 ghost per level beyond the first
+        int totalGhosts = baseGhostCount + additionalGhosts;
+
+        initializeGhosts(totalGhosts);
+    }
+
+
     private void initializeGhosts(int numberOfGhosts) {
         ghosts.clear();
         Maze currentMaze = levels.get(currentLevelIndex);
         double cellSize = currentMaze.getCellSize();
-        String[] ghostColors = {"red", "green", "orange", "yellow"}; // Extend this if needed
-
+        String[] ghostColors = {"red", "green", "orange", "yellow"}; // Ghost colors
+        double minDistance = 5 * cellSize; // Minimum safe distance (5 cells away)
 
         for (int i = 0; i < numberOfGhosts; i++) {
-            double ghostX, ghostY;
+            double ghostX = 0, ghostY = 0;
+            boolean validPositionFound = false;
 
-            while (true) {
-                // Select a random position in the grid
+            while (!validPositionFound) {
+                // Generate a random position in the grid
                 int col = (int) (Math.random() * currentMaze.getGrid()[0].length);
                 int row = (int) (Math.random() * currentMaze.getGrid().length);
 
                 // Check if the position is valid (not a wall)
                 if (!currentMaze.isWall(row, col)) {
-                    // Calculate the ghost's position in pixels
-                    ghostX = col * cellSize + (cellSize - (cellSize - 5)) / 2; // Center in cell
-                    ghostY = row * cellSize + (cellSize - (cellSize - 5)) / 2; // Center in cell
+                    // Calculate ghost's position in pixels
+                    ghostX = col * cellSize;
+                    ghostY = row * cellSize;
 
-                    // Ensure the ghost is not too close to Pac-Man
-                    if (Math.abs(ghostX - pacman.getX()) > cellSize && Math.abs(ghostY - pacman.getY()) > cellSize) {
-                        break; // Valid position found
+                    // Ensure the ghost is at least 'minDistance' away from Pac-Man
+                    double distanceToPacMan = Math.sqrt(
+                            Math.pow(ghostX - pacman.getX(), 2) + Math.pow(ghostY - pacman.getY(), 2)
+                    );
+
+                    if (distanceToPacMan >= minDistance) {
+                        // Use a temporary ghost object to check if at least one move is valid
+                        Ghost tempGhost = new Ghost(ghostX, ghostY, cellSize, 2, "orange", currentMaze);
+                        if (tempGhost.canMove(ghostX + cellSize, ghostY, currentMaze) ||
+                                tempGhost.canMove(ghostX - cellSize, ghostY, currentMaze) ||
+                                tempGhost.canMove(ghostX, ghostY + cellSize, currentMaze) ||
+                                tempGhost.canMove(ghostX, ghostY - cellSize, currentMaze)) {
+                            validPositionFound = true; // All checks passed
+                        }
                     }
                 }
             }
 
-            // Add the new ghost to the list
+            // Add the new ghost to the list with its corresponding color
             String color = ghostColors[i % ghostColors.length];
-
-            ghosts.add(new Ghost(ghostX, ghostY, cellSize, 2, color, currentMaze));
+            Ghost ghost = new Ghost(ghostX, ghostY, cellSize, 2, color, currentMaze);
+            ghost.snapToGridWithTolerance(currentMaze); // Align the ghost perfectly
+            ghosts.add(ghost);
         }
     }
+
+
 
 
 
@@ -205,20 +206,21 @@ public class PacManController {
         if (pacman.isPoweredUp()) {
             List<Ghost> eatenGhosts = new ArrayList<>();
             for (Ghost ghost : ghosts) {
-                if (ghost.collidesWith(pacman)) {
+                if (ghost.collidesWith(pacman)) { // Using bounding box method
                     score += 200;
-                    eatenGhosts.add(ghost); // Collect eaten ghosts
+                    eatenGhosts.add(ghost);
                 }
             }
-            ghosts.removeAll(eatenGhosts); // Remove eaten ghosts
+            ghosts.removeAll(eatenGhosts);
         } else {
             for (Ghost ghost : ghosts) {
-                if (ghost.collidesWith(pacman)) {
+                if (ghost.collidesWith(pacman)) { // Using bounding box method
                     System.out.println("Game Over! Final Score: " + score);
-                    System.exit(0); // End the game
+                    System.exit(0);
                 }
             }
         }
+
 
         // Move ghosts
         for (Ghost ghost : ghosts) {
@@ -230,8 +232,8 @@ public class PacManController {
             if (currentLevelIndex + 1 < levels.size()) {
                 currentLevelIndex++;
                 Maze nextMaze = levels.get(currentLevelIndex);
+                initializeGhostsForCurrentLevel();
                 pacman.resetPosition(nextMaze.getCellSize(), nextMaze.getCellSize());
-                initializeGhosts(currentLevelIndex + 2); // Add more ghosts for the next level
                 gameCanvas.setWidth(nextMaze.getCellSize() * nextMaze.getGrid()[0].length);
                 gameCanvas.setHeight(nextMaze.getCellSize() * nextMaze.getGrid().length);
             } else {

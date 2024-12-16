@@ -1,9 +1,7 @@
 package com.example.pacmangame;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcType;
 
 public class Maze {
     private final int[][] grid; // 1 = wall, 0 = path, 2 = pellet, 3 = power-up
@@ -27,7 +25,7 @@ public class Maze {
                     gc.setFill(Color.WHITE);
                     gc.fillOval(col * cellSize + cellSize / 4, row * cellSize + cellSize / 4, cellSize / 2, cellSize / 2);
                 } else if (grid[row][col] == 3) { // Power Pellet
-                    gc.setFill(Color.WHITE);
+                    gc.setFill(Color.ORANGE);
                     gc.fillOval(col * cellSize + cellSize / 4, row * cellSize + cellSize / 4, cellSize / 1.5, cellSize / 1.5);
                 }
             }

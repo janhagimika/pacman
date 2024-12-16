@@ -3,7 +3,6 @@ package com.example.pacmangame;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,11 +12,11 @@ public class Ghost {
     private double x;
     private double y;
     private final double size;
-    private double speed;
+    private final double speed;
     private double directionX;
     private double directionY;
-    private Image normalImage;
-    private Image blindImage;
+    private final Image normalImage;
+    private final Image blindImage;
     private boolean isBlind;
 
     public Ghost(double x, double y, double size, double speed, String color, Maze maze) {
@@ -59,8 +58,15 @@ public class Ghost {
                 changeDirection(maze);
             }
         }
-    }
+        handleStuckState(maze);
 
+    }
+    private void handleStuckState(Maze maze) {
+        if (directionX == 0 && directionY == 0) {
+            changeDirection(maze); // Force a direction change
+            System.out.println("Ghost was stuck and forced to change direction.");
+        }
+    }
 
     private boolean isAtIntersection(Maze maze) {
         int[][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // Up, down, left, right
@@ -84,11 +90,7 @@ public class Ghost {
         return validMoves >= 3; // Intersection if 3 or more valid moves
     }
 
-
-
-
-
-    private boolean canMove(double nextX, double nextY, Maze maze) {
+    public boolean canMove(double nextX, double nextY, Maze maze) {
         double cellSize = maze.getCellSize();
 
         // Calculate positions of the corners
@@ -113,15 +115,13 @@ public class Ghost {
         return withinBounds && !isWall;
     }
 
-
     private static final double EPSILON = 1e-1;
 
     private boolean isAlignedWithGrid(double value, double cellSize) {
         return Math.abs(value % cellSize) < EPSILON;
     }
 
-
-    private void snapToGridWithTolerance(Maze maze) {
+    public void snapToGridWithTolerance(Maze maze) {
         double cellSize = maze.getCellSize();
 
         // Snap horizontal position (x) if moving vertically
@@ -134,8 +134,6 @@ public class Ghost {
             y = Math.round(y / cellSize) * cellSize;
         }
     }
-
-
 
     private void changeDirection(Maze maze) {
         int[][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // Up, down, left, right
@@ -176,12 +174,6 @@ public class Ghost {
         }
     }
 
-
-
-
-
-
-
     private void initializeDirection(Maze maze) {
         int[][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
         List<int[]> list = new ArrayList<>(List.of(directions));
@@ -206,22 +198,13 @@ public class Ghost {
         changeDirection(maze);
     }
 
-
-
     public boolean collidesWith(PacMan pacman) {
-        double pacmanCenterX = pacman.getX() + pacman.getSize() / 2;
-        double pacmanCenterY = pacman.getY() + pacman.getSize() / 2;
-
-        double ghostCenterX = this.x + this.size / 2;
-        double ghostCenterY = this.y + this.size / 2;
-
-        double distanceX = Math.abs(pacmanCenterX - ghostCenterX);
-        double distanceY = Math.abs(pacmanCenterY - ghostCenterY);
-        double collisionThreshold = this.size / 2 + pacman.getSize() / 2;
-
-        return distanceX < collisionThreshold && distanceY < collisionThreshold;
+        return this.getBounds().intersects(pacman.getBounds());
     }
 
+    public javafx.geometry.Rectangle2D getBounds() {
+        return new javafx.geometry.Rectangle2D(x, y, size, size);
+    }
 
 
     public void render(GraphicsContext gc) {
@@ -230,19 +213,6 @@ public class Ghost {
         } else {
             gc.drawImage(normalImage, x, y, size, size);
         }
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void resetPosition(double startX, double startY) {
-        this.x = startX;
-        this.y = startY;
     }
 
     public void setBlind(boolean bool) {
