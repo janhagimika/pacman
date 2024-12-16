@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c4ad13b-dee1-4df3-b701-8759c892600b" name="Changes" comment="yop">
+    <list default="true" id="6c4ad13b-dee1-4df3-b701-8759c892600b" name="Changes" comment="updates, collisions and initializations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pacmangame/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pacmangame/Ghost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pacmangame/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pacmangame/Maze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pacmangame/PacMan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pacmangame/PacMan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pacmangame/PacManController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pacmangame/PacManController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +98,7 @@
       <workItem from="1734039474257" duration="9250000" />
       <workItem from="1734088243662" duration="10111000" />
       <workItem from="1734192948052" duration="2263000" />
-      <workItem from="1734355248922" duration="5856000" />
+      <workItem from="1734355248922" duration="6479000" />
     </task>
     <task id="LOCAL-00001" summary="yop">
       <option name="closed" value="true" />
@@ -120,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734193493166</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="updates, collisions and initializations">
+      <option name="closed" value="true" />
+      <created>1734368233040</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1734368233041</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,6 +132,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="yop" />
-    <option name="LAST_COMMIT_MESSAGE" value="yop" />
+    <MESSAGE value="updates, collisions and initializations" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates, collisions and initializations" />
   </component>
 </project>
