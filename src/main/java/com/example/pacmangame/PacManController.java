@@ -186,7 +186,7 @@ public class PacManController {
         } else if (currentMaze.isPowerUp(row, col) && pacman.collidesWithPellet(row, col, currentMaze)) {
             currentMaze.consume(row, col);
             score += 50;
-            boostEndTime = System.nanoTime() + 8_000_000_000L; // 8 seconds boost
+            boostEndTime = System.nanoTime() + 5_000_000_000L; // 5 seconds boost
             pacman.activatePowerUp();
             // Make all ghosts "blind"
             for (Ghost ghost : ghosts) {
